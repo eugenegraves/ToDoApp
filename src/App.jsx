@@ -1,11 +1,12 @@
 import React from 'react'
-import './styles/App.css'
+import TodoList from './components/TodoList'
 
 function App() {
   return (
-    <div className="app">
-      <h1>Welcome to your new React project!</h1>
-      <p>Start editing src/App.jsx to see your changes.</p>
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="container mx-auto">
+        <TodoList />
+      </div>
     </div>
   )
 }

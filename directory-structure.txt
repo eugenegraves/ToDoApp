@@ -1,0 +1,17 @@
+.
+├── directory-structure.txt
+├── package-lock.json
+├── package.json
+├── src
+│   ├── App.jsx
+│   ├── components
+│   ├── main.jsx
+│   ├── styles
+│   │   ├── App.css
+│   │   └── index.css
+│   ├── tests
+│   │   └── setup.js
+│   └── utils
+└── vite.config.js
+
+5 directories, 9 files
