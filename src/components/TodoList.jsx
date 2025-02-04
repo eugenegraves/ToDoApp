@@ -3,12 +3,35 @@
 import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
+import HorizontalProgressBar from './HorizontalProgressBar'
+
 // Define the TodoList component as a functional component
 const TodoList = () => {
   // State Declarations using useState Hook
   // todos: array to store all todo items
   // setTodos: function to update the todos array
   const [todos, setTodos] = useState([])
+
+  //This makes it so that whenever todos changes we update the number of elements that have completed as true
+  const [completedCount, setCompletedCount] = useState(0)
+  useEffect(() => {
+    const numCompleted = todos.filter((item) => item.completed).length
+    setCompletedCount(numCompleted)
+  }, [todos])
+
+  //This rerenders the component to give the progress bar effect
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => {
+        const newProgress = prevProgress + 10
+        return newProgress > 100 ? 0 : newProgress
+      })
+    }, 500)
+
+    return () => clearInterval(interval)
+  }, [])
 
   // inputValue: stores the current text in the input field
   // setInputValue: function to update the input field text
@@ -172,6 +195,13 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
+      <HorizontalProgressBar
+        progress={
+          todos.length > 0
+            ? (completedCount / todos.length) * 100
+            : (0 / 1) * 100
+        }
+      />
     </div>
   )
 }
